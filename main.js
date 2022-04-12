@@ -12,6 +12,7 @@ const ratetag = document.getElementById("rate");
 const nbyears = document.getElementById("nb-years");
 const calcul = document.getElementById("cal");
 const ul = document.getElementById("mylist");
+let cont = document.getElementById("cont");
 rangeval.innerHTML = ratetag.value;
 
 ratetag.oninput = function () {
@@ -35,6 +36,7 @@ amount.addEventListener("focus", function () {
   if (document.getElementById("cal").disabled === true) {
     document.getElementById("cal").disabled = false;
   }
+  cont.className = "container";
 });
 // let x = rangeval.value;
 // console.log(x);
@@ -72,8 +74,10 @@ calcul.addEventListener("click", function () {
       ul.innerHTML = "";
     });
   } else {
-    let cont = document.getElementById("cont");
+    //modify container class due a new style
+
     cont.className = "container2";
+    //create new list elements after click
     const li1 = document.createElement("LI");
     const li2 = document.createElement("LI");
     const li3 = document.createElement("LI");
@@ -97,26 +101,18 @@ calcul.addEventListener("click", function () {
     const textSp1 = document.createTextNode(amount.value);
     const textSp2 = document.createTextNode(rate.value);
 
-    // let x = rangeval.value;
-
-    // console.log(am);
-    // console.log(x);
-    // const result = 10;
-    // console.log("amount: ", am);
-    // console.log("nbr year:", ny);
-    // console.log("rate quotion: ", rt / 100);
+    // calculate the result
     let result = (x, y, z) => {
-      // console.log("amount: ", am);
-      // console.log("nbr year:", ny);
-      // console.log("rate quotion: ", rt / 100);
       res = parseInt(am * ny * (rt / 100));
       console.log(res);
       return res;
     };
 
+    // disable  button after clicking by adding a new attribute
     calcul.setAttribute("disabled", true);
     const textSp3 = document.createTextNode(result(am, rt, ny));
     const textSp31 = document.createTextNode(actuYear + parseInt(ny));
+
     span1.appendChild(textSp1);
     li1.appendChild(text1);
     li1.appendChild(span1);
